@@ -1,16 +1,16 @@
-import React from "react";
-import MatrixParallax from "react-matrix-parallax";
+import React from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Title } from "./PagesElements";
+
 
 const Error = () => {
 return (
-      <React.Fragment>
-        <MatrixParallax color="#00AA00" backgroundColor="rgba(0,0,0,1)">
-          <div style={{ fontSize: "1.7rem" }}>
-            <h2>404</h2>
-            <h5 style={{ maxWidth: "100vw" }}>Page Not Found</h5>
-          </div>
-        </MatrixParallax>
-      </React.Fragment>
+	<>
+	<Navbar />
+  <Title/>
+	<Footer />
+	</>
 );
 };
 

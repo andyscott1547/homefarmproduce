@@ -137,8 +137,38 @@ grid-auto-flow: column;
 gap: 20px;
 
 
-// @media (max-width: auto) {
-// 	grid-template-columns: repeat(auto-fill,
-// 						minmax(200px, 1fr));
-// }
+@media (max-width: auto) {
+	grid-template-columns: repeat(auto-fill,
+						minmax(200px, 1fr));
+}
+`;
+
+export const ImageBox = styled.div`
+padding: 10px;
+background: black;
+position: relative;
+bottom: 0;
+left: 0;
+width: 100%;
+justify-content: center;
+align-items: center;
+
+@media screen and (width: 100%) {
+	display: block;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	transform: translate(-100%, 75%);
+	font-size: 4rem;
+	cursor: pointer;
+}
+`;
+
+export const ImageRow = styled.div`
+display: flex;
+`;
+
+export const ImageColumn = styled.div`
+flex: 33.33%;
+padding: 10px;
 `;

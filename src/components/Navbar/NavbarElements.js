@@ -80,4 +80,8 @@ text-decoration: none;
 	color: black;
 	transition: 200ms ease-in;
 }
+
+&.active {
+	color: #AFE1AF;
+}
 `;
