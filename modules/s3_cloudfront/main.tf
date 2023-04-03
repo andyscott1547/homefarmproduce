@@ -226,31 +226,3 @@ resource "aws_acm_certificate_validation" "this" {
   certificate_arn         = aws_acm_certificate.this.arn
   validation_record_fqdns = aws_route53_record.this.*.fqdn
 }
-
-
-resource "aws_acm_certificate" "root" {
-  provider = aws.global
-  domain_name       = var.domain_name
-  validation_method = "DNS"
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_route53_record" "acm_root" {
-  count = length(aws_acm_certificate.root.domain_validation_options)
-
-  name            = element(aws_acm_certificate.root.domain_validation_options.*.resource_record_name, count.index)
-  type            = element(aws_acm_certificate.root.domain_validation_options.*.resource_record_type, count.index)
-  zone_id         = data.aws_route53_zone.selected.zone_id
-  records         = [element(aws_acm_certificate.root.domain_validation_options.*.resource_record_value, count.index)]
-  ttl             = 60
-  allow_overwrite = true
-}
-
-resource "aws_acm_certificate_validation" "root" {
-  provider = aws.global
-  certificate_arn         = aws_acm_certificate.root.arn
-  validation_record_fqdns = aws_route53_record.acm_root.*.fqdn
-}
