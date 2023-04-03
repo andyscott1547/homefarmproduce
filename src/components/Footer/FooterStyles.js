@@ -62,7 +62,7 @@ font-size: 18px;
 text-decoration: none;
 
 &:hover {
-	color: green;
+	color: #bf9026;
 	transition: 200ms ease-in;
 }
 `;

@@ -16,3 +16,8 @@ variable "name" {
   type = string
   description = "value for the name"
 }
+
+variable "domain_name" {
+  type = string
+  description = "value for the domain_name"
+}

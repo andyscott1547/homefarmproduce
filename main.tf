@@ -11,3 +11,12 @@ module "serverless_app" {
     "OPTIONS"
   ]
 }
+
+module "s3_cloudfront" {
+  providers = {
+    aws.global = aws.global
+   }
+  source = "./modules/s3_cloudfront"
+  name = var.name
+  domain_name = var.domain_name
+}

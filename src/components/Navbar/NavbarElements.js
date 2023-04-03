@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Box = styled.div`
 padding: 10px;
-background: #21421e;
+background: #494921;
 position: relative;
 top: 0;
 left: 0;
@@ -77,11 +77,11 @@ font-size: 20px;
 text-decoration: none;
 
 &:hover {
-	color: black;
+	color: #bf9026;
 	transition: 200ms ease-in;
 }
 
 &.active {
-	color: #AFE1AF;
+	color: #bf9026;
 }
 `;

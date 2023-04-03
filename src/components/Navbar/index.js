@@ -8,15 +8,16 @@ Column,
 Logo,
 HeaderLink,
 } from "./NavbarElements";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 return (
 	<>
 	<Box>
 	<Logo>
-		<a href="https://homefarmproduce.co.uk">
-		<img src={icon} alt="icon" style={{height:100, width:350}}/>
-		</a>
+		<Link to="/home">
+		<img src={icon} alt="Home Farm Produce" style={{height:100, width:350}}/>
+		</Link>
 	</Logo>
 	<Container>
 		<Row>

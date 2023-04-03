@@ -5,17 +5,20 @@ import Footer from "../components/Footer";
 import Find from "../components/Map";
 import ContactForm from '../components/ContactForm';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { Title, Welcome, Intro, Overview, Container, Box, Column, Row} from "./PagesElements";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MainTitle, Welcome, Intro, Overview, Container, Box, Column, Row} from "./PagesElements";
+import { FooterLink } from '../components/Footer/FooterStyles';
 
 
 const Home = () => {
 return (
 	<>
 	<Navbar />
-	<Title>
+	<MainTitle>
 		Home Farm Produce <br/>
 		From Farm To Fork
-	</Title>
+	</MainTitle>
 	<Welcome> 
 		We specialise in slow reared, natural, free range pork, chicken and beef direct from our farm to your fork.
 	</Welcome>
@@ -61,6 +64,14 @@ return (
 		<Overview>
 			Friday 10am - 4pm <br/>
 			Saturday 9am - 2pm <br/>
+		</Overview>
+	</Intro>
+	<Welcome>
+		Contact Us
+	</Welcome>
+	<Intro>
+		<Overview>
+		<FooterLink href = "mailto: paula@homefarmproduce.co.uk"> <FontAwesomeIcon icon={faEnvelope} size="2x"/></FooterLink> &emsp; <FooterLink href = "tel: 07807040173"> <FontAwesomeIcon icon={faPhone} size="2x"/></FooterLink> 
 		</Overview>
 	</Intro>
 	<ContactForm />

@@ -1,8 +1,39 @@
 // import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import Fields from "./images/fields.jpg";
+import Cows from "./images/cows.jpg";
 
 export const Title = styled.div`
+display: flex;
+font-size: 45px;
+padding: 10px;
+position: relative;
+top: 0;
+background-color: black;
+background-image: url(${Cows});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+color: white;
+width: 100%;
+max-width: auto;
+height: 400px;
+justify-content: center;
+align-items: center;
+text-align: center;
+margin: 0 auto;
+
+@media screen and (width: 100%) {
+    height: 400px;
+    display: flex;
+	position: relative;
+	transform: translate(-100%, 75%);
+	font-size: 4rem;
+	cursor: pointer;
+}
+`;
+
+export const MainTitle = styled.div`
 display: flex;
 font-size: 45px;
 padding: 10px;
@@ -12,7 +43,7 @@ background-color: black;
 background-image: url(${Fields});
 background-repeat: no-repeat;
 background-size: cover;
-background-position: top;
+background-position: center;
 color: white;
 width: 100%;
 max-width: auto;
@@ -58,6 +89,7 @@ margin: 0 auto;
 
 export const Intro = styled.div`
 display: flex;
+list-style-position: inside;
 font-size: 15px;
 padding: 10px;
 position: relative;

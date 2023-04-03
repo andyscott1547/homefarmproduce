@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
 	faFacebook,
 	faTwitter,
@@ -20,9 +21,12 @@ return (
 	<Container>
 		<Row>
 		<Column>
-		<FooterLink href="https://homefarmproduce.co.uk"
-			className="home">
-			<FontAwesomeIcon icon={faHouse} size="2x" />
+		<FooterLink>
+			<Link to="/home">
+			<FooterLink>
+			<FontAwesomeIcon icon={faHouse} size="2x"/>
+			</FooterLink>
+			</Link>
 		</FooterLink>
 		</Column>
 		<Column>
