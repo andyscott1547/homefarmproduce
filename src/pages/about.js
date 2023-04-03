@@ -19,7 +19,10 @@ return (
 	<Container>
 		<ImageRow>
 			<ImageColumn>
-			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/lake.jpg" alt="HomeFarm Lake" style={{width:"100%"}}/>
+			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/woodland.jpg" alt="HomeFarm Woodland" style={{width:"100%", height:"100%"}}/>
+			</ImageColumn>
+			<ImageColumn>
+			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/lake.jpg" alt="HomeFarm Lake" style={{width:"100%", height:"100%"}}/>
 			</ImageColumn>
 		</ImageRow>
 	</Container>
@@ -38,7 +41,10 @@ return (
 	<Container>
 		<ImageRow>
 			<ImageColumn>
-			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/woodland.jpg" alt="HomeFarm Woodland" style={{width:"100%"}}/>
+			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/farmshoppond.jpg" alt="HomeFarm Shop Pond" style={{width:"100%", height:"80%"}}/>
+			</ImageColumn>
+			<ImageColumn>
+			<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/tractor.jpg" alt="HomeFarm Tractor" style={{width:"100%", height:"80%"}}/>
 			</ImageColumn>
 		</ImageRow>
 	</Container>

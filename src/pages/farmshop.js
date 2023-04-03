@@ -35,7 +35,10 @@ return (
 		<Container>
 		<ImageRow>
 			<ImageColumn>
-				<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/farm-shop.jpg" alt="Farm Shop" style={{width:"100%", padding:"30px"}}/>
+				<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/farm-shop.jpg" alt="Farm Shop" style={{width:"100%", height:"100%", padding:"30px" }}/>
+			</ImageColumn>
+			<ImageColumn>
+				<img src="https://502101718834-eu-west-1-public-content.s3.eu-west-1.amazonaws.com/porkpie.jpg" alt="Farm Shop Pork Pie" style={{width:"100%", height:"100%", padding:"30px" }}/>
 			</ImageColumn>
 		</ImageRow>
 		</Container>
