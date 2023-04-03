@@ -122,7 +122,7 @@ margin: 10px auto;
 
 export const Box = styled.div`
 padding: 10px;
-background: White;
+background: #494921;
 position: relative;
 bottom: 0;
 left: 0;

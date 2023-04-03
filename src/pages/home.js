@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MainTitle, Welcome, Intro, Overview, Container, Box, Column, Row} from "./PagesElements";
 import { FooterLink } from '../components/Footer/FooterStyles';
 
-
 const Home = () => {
 return (
 	<>

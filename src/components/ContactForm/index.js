@@ -57,9 +57,9 @@ const ContactForm = () => {
           </label>
           <textarea className="form-control" id="message" required />
         </div>
-        <ReCAPTCHA sitekey="6LexVNoZAAAAANeQkvE6BIQ2fQd9Er-3tqhb-4e9" onChange={onChange}/>
+        <ReCAPTCHA sitekey="6LexVNoZAAAAANeQkvE6BIQ2fQd9Er-3tqhb-4e9" onChange={onChange} theme="dark" style={{width:"100%"}}/>
         <br/>
-        <button className="btn btn-success" type="submit" style={{width:"100%"}}>
+        <button className="btn btn-success" type="submit" style={{width:"100%", backgroundColor:"#494921", borderColor:"#494921"}}>
           {formStatus}
         </button>
       </form>
