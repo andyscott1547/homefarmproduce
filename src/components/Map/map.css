@@ -7,9 +7,4 @@
     position: relative;
     background-color: black;
     z-index: 0;
-
-    @media screen and (max-width: 100%) {
-      width: 80%;
-      height: 300px;
-    }
   }

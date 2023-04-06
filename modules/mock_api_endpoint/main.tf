@@ -14,11 +14,11 @@ resource "aws_api_gateway_method_response" "this" {
 }
 
 resource "aws_api_gateway_integration" "this" {
-  rest_api_id             = var.api_id
-  resource_id             = var.resource_id
-  http_method             = var.method
-  type                    = "MOCK"
-  content_handling        = "CONVERT_TO_TEXT"
+  rest_api_id      = var.api_id
+  resource_id      = var.resource_id
+  http_method      = var.method
+  type             = "MOCK"
+  content_handling = "CONVERT_TO_TEXT"
 
   timeout_milliseconds = 29000
   passthrough_behavior = "WHEN_NO_MATCH"

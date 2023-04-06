@@ -13,11 +13,11 @@ variable "tags" {
 }
 
 variable "name" {
-  type = string
+  type        = string
   description = "value for the name"
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
   description = "value for the domain_name"
 }

@@ -1,28 +1,28 @@
 # modules/api_gateway_resource/variables.tf
 
 variable "name" {
-  type = string
+  type        = string
   description = "value for the name"
 }
 
 variable "api_gateway_resources" {
-  type = map(string)
+  type        = map(string)
   description = "values for the api_gateway_resources"
 }
 
 variable "contact_form_methods" {
-  type = list(string)
+  type        = list(string)
   description = "values for the contact_form_methods"
 }
 
 variable "authorization" {
-  type = string
+  type        = string
   description = "value for the authorization"
-  default = "NONE"
+  default     = "NONE"
 }
 
 variable "stage_name" {
-  type = string
+  type        = string
   description = "value for the stage_name"
-  default = "dev"
+  default     = "dev"
 }

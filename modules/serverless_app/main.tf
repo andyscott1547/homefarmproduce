@@ -1,7 +1,7 @@
 # modules/serverless_app/main.tf
 
 resource "aws_api_gateway_rest_api" "this" {
-  name        = var.name
+  name = var.name
 }
 
 resource "aws_api_gateway_deployment" "this" {
@@ -43,17 +43,17 @@ resource "aws_api_gateway_method" "this" {
 }
 
 module "mock_post" {
-  source = "../../modules/mock_api_endpoint"
-  api_id = aws_api_gateway_rest_api.this.id
+  source      = "../../modules/mock_api_endpoint"
+  api_id      = aws_api_gateway_rest_api.this.id
   resource_id = aws_api_gateway_resource.this["contact_form"].id
-  method = aws_api_gateway_method.this["POST"].http_method
+  method      = aws_api_gateway_method.this["POST"].http_method
 }
 
 module "mock_options" {
-  source = "../../modules/mock_api_endpoint"
-  api_id = aws_api_gateway_rest_api.this.id
+  source      = "../../modules/mock_api_endpoint"
+  api_id      = aws_api_gateway_rest_api.this.id
   resource_id = aws_api_gateway_resource.this["contact_form"].id
-  method = aws_api_gateway_method.this["OPTIONS"].http_method
+  method      = aws_api_gateway_method.this["OPTIONS"].http_method
 }
 
 # resource "aws_api_gateway_method_response" "this" {

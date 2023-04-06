@@ -4,13 +4,14 @@ import styled from "styled-components";
 export const Box = styled.div`
 padding: 10px;
 background: #494921;
-position: relative;
+position: sticky;
 top: 0;
 left: 0;
 width: 100%;
 max-width: auto;
 justify-content: center;
 align-items: center;
+z-index: 1;
 
 @media screen and (width: 100%) {
 	display: block;

@@ -70,16 +70,16 @@ data "aws_iam_policy_document" "this" {
     }
   }
   statement {
-    sid       = "AllowCloudFrontServicePrincipalReadOnly"
-    effect    = "Allow"
-    actions   = [
-        "s3:Get*", 
-        "s3:List*"
-      ]
+    sid    = "AllowCloudFrontServicePrincipalReadOnly"
+    effect = "Allow"
+    actions = [
+      "s3:Get*",
+      "s3:List*"
+    ]
     resources = [
-        aws_s3_bucket.this.arn,
-        "${aws_s3_bucket.this.arn}/*",
-        "${aws_s3_bucket.this.arn}/*/*"
+      aws_s3_bucket.this.arn,
+      "${aws_s3_bucket.this.arn}/*",
+      "${aws_s3_bucket.this.arn}/*/*"
     ]
 
     principals {
@@ -145,7 +145,7 @@ resource "aws_cloudfront_distribution" "this" {
     response_page_path    = "/index.html"
   }
 
-    custom_error_response {
+  custom_error_response {
     error_caching_min_ttl = 0
     error_code            = 404
     response_code         = 200
@@ -198,8 +198,8 @@ resource "aws_route53_record" "www" {
 }
 
 resource "aws_acm_certificate" "this" {
-  provider = aws.global
-  domain_name       = "*.${var.domain_name}"
+  provider    = aws.global
+  domain_name = "*.${var.domain_name}"
   subject_alternative_names = [
     var.domain_name
   ]
@@ -222,7 +222,7 @@ resource "aws_route53_record" "this" {
 }
 
 resource "aws_acm_certificate_validation" "this" {
-  provider = aws.global
+  provider                = aws.global
   certificate_arn         = aws_acm_certificate.this.arn
   validation_record_fqdns = aws_route53_record.this.*.fqdn
 }
