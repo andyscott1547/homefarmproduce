@@ -30,10 +30,16 @@ module "lambda_notifications" {
   s3_bucket        = module.s3_app_code.bucket_name
   code_zip         = module.s3_app_code.code_zip
   code_zip_version = module.s3_app_code.code_zip_version
+  custom_policy    = data.aws_iam_policy_document.lambda_notifications.json
 }
 
 module "s3_app_code" {
   source                       = "./modules/s3_app_code"
   bucket_name                  = var.name
   access_logging_target_bucket = "502101718834-eu-west-1-access-logs"
+}
+
+module "ses" {
+  source = "./modules/ses"
+  name   = var.name
 }
