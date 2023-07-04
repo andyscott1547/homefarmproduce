@@ -26,3 +26,8 @@ variable "stage_name" {
   description = "value for the stage_name"
   default     = "dev"
 }
+
+variable "lambda_notifier_uri" {
+  type        = string
+  description = "value for the lambda_notifier_uri"
+}

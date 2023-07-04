@@ -11,7 +11,9 @@ resource "aws_api_gateway_deployment" "this" {
     redeployment = sha1(jsonencode([
       aws_api_gateway_resource.this[*],
       aws_api_gateway_method.this[*],
-      module.mock_post,
+      aws_api_gateway_integration.post,
+      aws_api_gateway_method_response.post,
+      aws_api_gateway_integration_response.post,
       module.mock_options
     ]))
   }
@@ -42,12 +44,48 @@ resource "aws_api_gateway_method" "this" {
   authorization = var.authorization
 }
 
-module "mock_post" {
-  source      = "../../modules/mock_api_endpoint"
-  api_id      = aws_api_gateway_rest_api.this.id
-  resource_id = aws_api_gateway_resource.this["contact_form"].id
-  method      = aws_api_gateway_method.this["POST"].http_method
+resource "aws_api_gateway_integration" "post" {
+  rest_api_id             = aws_api_gateway_rest_api.this.id
+  resource_id             = aws_api_gateway_resource.this["contact_form"].id
+  http_method             = aws_api_gateway_method.this["POST"].http_method
+  type                    = "AWS_PROXY"
+  integration_http_method = "ANY"
+  uri                     = var.lambda_notifier_uri
 }
+
+resource "aws_api_gateway_method_response" "post" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_integration.post.resource_id
+  http_method = aws_api_gateway_integration.post.http_method
+  status_code = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods" : false,
+    "method.response.header.Access-Control-Allow-Headers" : false,
+    "method.response.header.Access-Control-Allow-Origin" : false
+  }
+  response_models = {
+    "application/json" = "Empty"
+  }
+}
+
+resource "aws_api_gateway_integration_response" "post" {
+  rest_api_id = aws_api_gateway_rest_api.this.id
+  resource_id = aws_api_gateway_integration.post.resource_id
+  http_method = aws_api_gateway_integration.post.http_method
+  status_code = aws_api_gateway_method_response.post.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods" : "'GET,OPTIONS,PUT,POST'",
+    "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Origin" : "'*'"
+  }
+}
+
+# module "mock_post" {
+#   source      = "../../modules/mock_api_endpoint"
+#   api_id      = aws_api_gateway_rest_api.this.id
+#   resource_id = aws_api_gateway_resource.this["contact_form"].id
+#   method      = aws_api_gateway_method.this["POST"].http_method
+# }
 
 module "mock_options" {
   source      = "../../modules/mock_api_endpoint"
@@ -56,96 +94,3 @@ module "mock_options" {
   method      = aws_api_gateway_method.this["OPTIONS"].http_method
 }
 
-# resource "aws_api_gateway_method_response" "this" {
-#   rest_api_id = aws_api_gateway_rest_api.this.id
-#   resource_id = aws_api_gateway_resource.this["contact_form"].id
-#   http_method = aws_api_gateway_method.this["POST"].http_method
-#   status_code = "200"
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Methods" : false,
-#     "method.response.header.Access-Control-Allow-Headers" : false,
-#     "method.response.header.Access-Control-Allow-Origin" : false
-#   }
-#   response_models = {
-#     "application/json" = "Empty"
-#   }
-# }
-
-# resource "aws_api_gateway_integration" "this" {
-#   rest_api_id             = aws_api_gateway_rest_api.this.id
-#   resource_id             = aws_api_gateway_resource.this["contact_form"].id
-#   http_method             = aws_api_gateway_method.this["POST"].http_method
-#   type                    = "MOCK"
-#   content_handling        = "CONVERT_TO_TEXT"
-
-#   timeout_milliseconds = 29000
-#   passthrough_behavior = "WHEN_NO_MATCH"
-
-#   request_templates = {
-#     "application/json" = <<EOF
-# { "statusCode": 200 }
-# EOF
-#   }
-# }
-
-# resource "aws_api_gateway_integration_response" "this" {
-#   rest_api_id = aws_api_gateway_rest_api.this.id
-#   resource_id = aws_api_gateway_resource.this["contact_form"].id
-#   http_method = aws_api_gateway_method.this["POST"].http_method
-#   status_code = aws_api_gateway_method_response.this.status_code
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Methods" : "'GET,OPTIONS,PUT'",
-#     "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-#     "method.response.header.Access-Control-Allow-Origin" : "'*'"
-#   }
-#   depends_on = [
-#     aws_api_gateway_integration.this
-#   ]
-# }
-
-# resource "aws_api_gateway_method_response" "options" {
-#   rest_api_id = aws_api_gateway_rest_api.this.id
-#   resource_id = aws_api_gateway_resource.this["contact_form"].id
-#   http_method = aws_api_gateway_method.this["OPTIONS"].http_method
-#   status_code = "200"
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Methods" : false,
-#     "method.response.header.Access-Control-Allow-Headers" : false,
-#     "method.response.header.Access-Control-Allow-Origin" : false
-#   }
-#   response_models = {
-#     "application/json" = "Empty"
-#   }
-# }
-
-# resource "aws_api_gateway_integration" "options" {
-#   rest_api_id             = aws_api_gateway_rest_api.this.id
-#   resource_id             = aws_api_gateway_resource.this["contact_form"].id
-#   http_method             = aws_api_gateway_method.this["OPTIONS"].http_method
-#   type                    = "MOCK"
-#   content_handling        = "CONVERT_TO_TEXT"
-
-#   timeout_milliseconds = 29000
-#   passthrough_behavior = "WHEN_NO_MATCH"
-
-#   request_templates = {
-#     "application/json" = <<EOF
-# { "statusCode": 200 }
-# EOF
-#   }
-# }
-
-# resource "aws_api_gateway_integration_response" "options" {
-#   rest_api_id = aws_api_gateway_rest_api.this.id
-#   resource_id = aws_api_gateway_resource.this["contact_form"].id
-#   http_method = aws_api_gateway_method.this["OPTIONS"].http_method
-#   status_code = aws_api_gateway_method_response.options.status_code
-#   response_parameters = {
-#     "method.response.header.Access-Control-Allow-Methods" : "'GET,OPTIONS,PUT'",
-#     "method.response.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
-#     "method.response.header.Access-Control-Allow-Origin" : "'*'"
-#   }
-#   depends_on = [
-#     aws_api_gateway_integration.options
-#   ]
-# }
