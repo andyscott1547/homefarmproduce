@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "assumerole" {
   }
 }
 
-data "aws_s3_object" "this" {
-  bucket = var.s3_bucket
-  key    = var.code_zip
-}
+# data "aws_s3_object" "this" {
+#   bucket = var.s3_bucket
+#   key    = var.code_zip
+# }

@@ -24,11 +24,12 @@ module "s3_cloudfront" {
 }
 
 module "lambda_notifications" {
-  source          = "./modules/lambda"
-  lambda_name     = "${var.name}-notifier"
-  api_gateway_arn = module.serverless_app.api_gateway.execution_arn
-  s3_bucket       = module.s3_app_code.bucket_name
-  code_zip        = module.s3_app_code.code_zip
+  source           = "./modules/lambda"
+  lambda_name      = "${var.name}-notifier"
+  api_gateway_arn  = module.serverless_app.api_gateway.execution_arn
+  s3_bucket        = module.s3_app_code.bucket_name
+  code_zip         = module.s3_app_code.code_zip
+  code_zip_version = module.s3_app_code.code_zip_version
 }
 
 module "s3_app_code" {

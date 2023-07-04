@@ -8,6 +8,11 @@ variable "code_zip" {
   description = "The lambda package zip"
 }
 
+variable "code_zip_version" {
+  type        = string
+  description = "The lambda package zip version"
+}
+
 variable "handler" {
   type        = string
   default     = "lambda_function.lambda_handler"

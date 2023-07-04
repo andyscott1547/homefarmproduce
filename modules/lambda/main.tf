@@ -6,9 +6,9 @@ resource "aws_lambda_function" "this" {
   //checkov:skip=CKV_AWS_117
   //checkov:skip=CKV_SECRET_13
   function_name     = var.lambda_name
-  s3_bucket         = data.aws_s3_object.this.bucket
-  s3_key            = data.aws_s3_object.this.key
-  s3_object_version = data.aws_s3_object.this.version_id
+  s3_bucket         = var.s3_bucket
+  s3_key            = var.code_zip
+  s3_object_version = var.code_zip_version
 
   handler                        = var.handler
   runtime                        = var.runtime
