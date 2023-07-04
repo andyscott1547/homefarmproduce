@@ -61,6 +61,7 @@ return (
 	</Welcome>
 	<Intro>
 		<Overview>
+			Thursday 10am - 4pm <br/>
 			Friday 10am - 4pm <br/>
 			Saturday 9am - 2pm <br/>
 		</Overview>

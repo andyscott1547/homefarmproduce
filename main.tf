@@ -21,3 +21,17 @@ module "s3_cloudfront" {
   domain_name                  = var.domain_name
   access_logging_target_bucket = "502101718834-eu-west-1-access-logs"
 }
+
+module "lambda_notifications" {
+  source          = "./modules/lambda"
+  lambda_name     = "${var.name}-notifier"
+  api_gateway_arn = module.serverless_app.api_gateway.arn
+  s3_bucket       = module.s3_app_code.bucket_name
+  code_zip        = module.s3_app_code.code_zip
+}
+
+module "s3_app_code" {
+  source                       = "./modules/s3_app_code"
+  bucket_name                  = var.name
+  access_logging_target_bucket = "502101718834-eu-west-1-access-logs"
+}
