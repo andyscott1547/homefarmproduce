@@ -19,8 +19,7 @@ def send_email(name, email, message):
         response = ses_client.send_templated_email(
             Source='notification@homefarmproduce.co.uk',
             Destination={'ToAddresses': [
-                'homefarmproduceretford@gmail.com',
-                'andyscott1547@hotmail.com'
+                'homefarmproduceretford@gmail.com'
             ]},
             Template='homefarmproduce-notification',
             TemplateData='{"name":"'+name+'", "email":"'+email+'", "message":"'+message+'"}',

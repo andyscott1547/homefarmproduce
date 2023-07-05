@@ -71,7 +71,7 @@ return (
 	</Welcome>
 	<Intro>
 		<Overview>
-		<FooterLink href = "mailto: paula@homefarmproduce.co.uk"> <FontAwesomeIcon icon={faEnvelope} size="2x"/></FooterLink> &emsp; <FooterLink href = "tel: 07807040173"> <FontAwesomeIcon icon={faPhone} size="2x"/></FooterLink> 
+		<FooterLink href = "mailto: homefarmproduceretford@gmail.com"> <FontAwesomeIcon icon={faEnvelope} size="2x"/></FooterLink> &emsp; <FooterLink href = "tel: 07807040173"> <FontAwesomeIcon icon={faPhone} size="2x"/></FooterLink> 
 		</Overview>
 	</Intro>
 	<ContactForm />
